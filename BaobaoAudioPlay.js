@@ -1,18 +1,17 @@
 const _BaobaoAudioPlay = (options) => {
   options = Object.assign({
-    play: true,
     src: '',
     loop: false,
-    autoplay: false,
+    // autoplay: false,
     icon: true,
     el: 'body',
-    preload: true
+    preload: 'auto'
   }, options);
 
   this.loading = true;
   this.el = options.el;
   this.audioInstance = document.createElement('audio');
-  this.audioInstance.preload = options.preload ? 'auto' : 'meta';
+  this.audioInstance.preload = options.preload;
   this.audioInstance.src = options.src;
   this.audioInstance.loop = options.loop;
   this.instanceId = 'commonAudio' + Date.parse(new Date())
