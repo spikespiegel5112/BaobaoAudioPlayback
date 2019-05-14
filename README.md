@@ -18,16 +18,16 @@ BaobaoAudioPlay({
 
 ## API
 
-+ methods
+### methods
 
-| 名称 name | 描述 description | 默认值 required|
+| 名称 name | 描述 description | 默认值 default|
 | :-----| ---: | :----: |
-| play() | 开始加载并播放音频 | |
+| play() | 开始加载并播放音频 | 	|
 
 
-+ options
+### options
 
-| 名称 name | 描述 description | 默认值 required|
+| 名称 name | 描述 description | 默认值 default|
 | :-----| ---: | :----: |
 | src | 音频文件路径 | 空字符串|
 | loop | 是否循环 | false|
