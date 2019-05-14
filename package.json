@@ -1,9 +1,9 @@
 {
-  "name": "baobaoaudioplayback",
+  "name": "baobao-audio-play",
   "version": "1.0.1",
   "dependencies": {},
   "description": "",
-  "main": "BaobaoAudioPlay.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

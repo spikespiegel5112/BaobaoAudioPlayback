@@ -42,7 +42,7 @@ const _BaobaoAudioPlay = (options) => {
     }
   })
 };
-const BaobaoAudioPlay = options => {
+const Index = options => {
   return new _BaobaoAudioPlay(options)
 };
 
@@ -105,4 +105,4 @@ _BaobaoAudioPlay.prototype = {
   }
 };
 
-export default BaobaoAudioPlay;
+export default Index;

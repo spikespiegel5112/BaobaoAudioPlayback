@@ -1,4 +1,4 @@
-# BaobaoAudioPlayback
+# Index
 
 ## 安装 Install
 
@@ -9,7 +9,7 @@ npm i baobaoaudioplayback
 ## 使用方法 Usage
 
 ```
-BaobaoAudioPlay({
+Index({
   src: 'htt[://www.xxx.com/xxx.mp3', //audio url,
   loop: true, //是否循环播放
   el: '.entrance_main_container'
