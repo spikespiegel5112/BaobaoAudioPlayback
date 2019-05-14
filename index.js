@@ -1,4 +1,4 @@
-const _BaobaoAudioPlay = (options) => {
+const _BaobaoAudioPlayback = options => {
   options = Object.assign({
     src: '',
     loop: false,
@@ -28,26 +28,24 @@ const _BaobaoAudioPlay = (options) => {
     templateNode.classList.add('active')
     templateNode.classList.add('loading')
   }
-  _BaobaoAudioPlay.prototype.play();
+  _BaobaoAudioPlayback.prototype.play();
 
   this.instanceElement = document.getElementById(this.instanceId);
 
   this.instanceElement.addEventListener('click', () => {
     if (this.audioInstance.paused) {
-      _BaobaoAudioPlay.prototype.play();
+      _BaobaoAudioPlayback.prototype.play();
       this.instanceElement.classList.add('active')
     } else {
-      _BaobaoAudioPlay.prototype.pause();
+      _BaobaoAudioPlayback.prototype.pause();
       this.instanceElement.classList.remove('active');
     }
   })
 };
-const Index = options => {
-  return new _BaobaoAudioPlay(options)
-};
 
-_BaobaoAudioPlay.prototype = {
-  constructor: _BaobaoAudioPlay,
+
+_BaobaoAudioPlayback.prototype = {
+  constructor: _BaobaoAudioPlayback,
   play: () => {
     const play = () => {
       document.getElementById(this.instanceId).classList.remove('loading');
@@ -57,7 +55,7 @@ _BaobaoAudioPlay.prototype = {
       });
     };
 
-    if (_BaobaoAudioPlay.prototype.checkEnvironment() !== 'ios') {
+    if (_BaobaoAudioPlayback.prototype.checkEnvironment() !== 'ios') {
       this.audioInstance.addEventListener('canplaythrough', e => {
         play();
       }, false)
@@ -105,4 +103,8 @@ _BaobaoAudioPlay.prototype = {
   }
 };
 
-export default Index;
+const BaobaoAudioPlayback = options => {
+  return new _BaobaoAudioPlayback(options)
+};
+
+export default BaobaoAudioPlayback;
