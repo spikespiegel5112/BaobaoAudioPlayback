@@ -20,7 +20,9 @@ const _BaobaoAudioPlayback = options => {
   let templateNode = document.createElement('div');
   templateNode.setAttribute('id', this.instanceId);
   templateNode.setAttribute('class', 'common_musicbutton_wrapper');
-  templateNode.innerHTML = templateString;
+  if (options.icon) {
+    templateNode.innerHTML = templateString;
+  }
   document.querySelector(options.el).appendChild(templateNode);
 
 
