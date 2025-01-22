@@ -11,7 +11,7 @@ npm i baobao-audio-playback
 ```
 let BaobaoAduioPlayback=require('baobao-audio-playback')
 BaobaoAduioPlayback({
-  src: 'htt[://www.xxx.com/xxx.mp3', //audio url,
+  src: 'http://www.xxx.com/xxx.mp3', //audio url,
   loop: true, //是否循环播放
   el: '.entrance_main_container'
 }).play();
