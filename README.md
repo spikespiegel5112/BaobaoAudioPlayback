@@ -2,7 +2,7 @@
 
 [![npm version](https://img.shields.io/npm/v/baobao-audio-playback.svg)](https://www.npmjs.com/package/baobao-audio-playback)
 [![npm downloads](https://img.shields.io/npm/dm/baobao-audio-playback.svg)](https://www.npmjs.com/package/baobao-audio-playback)
-[![License](https://img.shields.io/npm/l/baobao-audio-playback.svg)](https://github.com/YOUR_USERNAME/baobao-audio-playback/LICENSE)
+[![License](https://img.shields.io/npm/l/baobao-audio-playback.svg)](https://github.com/spikespiegel5112/baobao-audio-playback/LICENSE)
 
 A lightweight audio playback plugin for web applications.
 
