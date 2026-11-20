@@ -1,5 +1,14 @@
 # Baobao Audio Playback
 
+
+[![npm version](https://img.shields.io/npm/v/baobao-audio-playback.svg)](https://www.npmjs.com/package/baobao-audio-playback)
+[![npm downloads](https://img.shields.io/npm/dm/baobao-audio-playback.svg)](https://www.npmjs.com/package/baobao-audio-playback)
+[![License](https://img.shields.io/npm/l/baobao-audio-playback.svg)](https://github.com/YOUR_USERNAME/baobao-audio-playback/blob/main/LICENSE)
+
+A lightweight audio playback plugin for web applications.
+
+**NPM:** [baobao-audio-playback](https://www.npmjs.com/package/baobao-audio-playback)
+
 A lightweight audio playback plugin for web applications.
 
 **Baobao Audio Playback** is a simple and lightweight audio playback utility that makes it easy to integrate audio playback functionality into your web application.
@@ -30,20 +39,6 @@ yarn add baobao-audio-playback
 
 ## Quick Start
 
-### Basic Usage
-
-```javascript
-const BaobaoAudioPlayback = require('baobao-audio-playback');
-
-const audio = BaobaoAudioPlayback({
-  src: 'https://example.com/audio.mp3',
-  loop: true,
-  el: '.entrance_main_container'
-});
-
-audio.play();
-```
-
 ### Configuration Example
 
 ```javascript
@@ -53,7 +48,7 @@ const audio = BaobaoAudioPlayback({
   src: 'https://example.com/audio.mp3',
   loop: false,
   icon: true,
-  el: 'body',
+  el: '.audio-container',
   preload: 'auto'
 });
 
@@ -116,7 +111,6 @@ Set `icon` to `true` to enable the built-in playback UI.
 const audio = BaobaoAudioPlayback({
   src: 'https://example.com/audio.mp3',
   icon: true,
-  el: '.audio-container'
 });
 
 audio.play();
