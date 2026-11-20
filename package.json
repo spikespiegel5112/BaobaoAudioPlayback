@@ -1,6 +1,6 @@
 {
   "name": "baobao-audio-playback",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "dependencies": {},
   "description": "",
   "main": "index.js",
