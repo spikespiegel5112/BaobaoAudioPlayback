@@ -1,6 +1,6 @@
 {
-  "name": "baobao-audio-play",
-  "version": "0.0.2",
+  "name": "baobao-audio-playback",
+  "version": "1.0.1",
   "dependencies": {},
   "description": "",
   "main": "index.js",
@@ -12,7 +12,7 @@
     "url": "git+https://github.com/spikespiegel5112/BaobaoAudioPlayback.git"
   },
   "author": "spikespiegel",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/spikespiegel5112/BaobaoAudioPlayback/issues"
   },

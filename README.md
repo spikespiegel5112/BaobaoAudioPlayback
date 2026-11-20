@@ -1,13 +1,8 @@
 # Baobao Audio Playback
 
-
 [![npm version](https://img.shields.io/npm/v/baobao-audio-playback.svg)](https://www.npmjs.com/package/baobao-audio-playback)
 [![npm downloads](https://img.shields.io/npm/dm/baobao-audio-playback.svg)](https://www.npmjs.com/package/baobao-audio-playback)
 [![License](https://img.shields.io/npm/l/baobao-audio-playback.svg)](https://github.com/YOUR_USERNAME/baobao-audio-playback/blob/main/LICENSE)
-
-A lightweight audio playback plugin for web applications.
-
-**NPM:** [baobao-audio-playback](https://www.npmjs.com/package/baobao-audio-playback)
 
 A lightweight audio playback plugin for web applications.
 
@@ -42,14 +37,14 @@ yarn add baobao-audio-playback
 ### Configuration Example
 
 ```javascript
-const BaobaoAudioPlayback = require('baobao-audio-playback');
+const BaobaoAudioPlayback = require("baobao-audio-playback");
 
 const audio = BaobaoAudioPlayback({
-  src: 'https://example.com/audio.mp3',
+  src: "https://example.com/audio.mp3",
   loop: false,
   icon: true,
-  el: '.audio-container',
-  preload: 'auto'
+  el: ".audio-container",
+  preload: "auto",
 });
 
 audio.play();
@@ -61,18 +56,18 @@ audio.play();
 
 The plugin accepts a configuration object when initialized.
 
-| Option | Type | Default | Description |
-| :--- | :--- | :--- | :--- |
-| `src` | `String` | `''` | URL of the audio file. |
-| `loop` | `Boolean` | `false` | Whether to enable loop playback. |
-| `icon` | `Boolean` | `false` | Whether to display the built-in playback UI. |
-| `el` | `String` | `'body'` | CSS selector of the parent DOM element where the component will be mounted. |
-| `preload` | `String` | `'auto'` | Audio preload strategy. Supports native HTML audio preload values: `none`, `metadata`, and `auto`. |
+| Option    | Type      | Default  | Description                                                                                        |
+| :-------- | :-------- | :------- | :------------------------------------------------------------------------------------------------- |
+| `src`     | `String`  | `''`     | URL of the audio file.                                                                             |
+| `loop`    | `Boolean` | `false`  | Whether to enable loop playback.                                                                   |
+| `icon`    | `Boolean` | `false`  | Whether to display the built-in playback UI.                                                       |
+| `el`      | `String`  | `'body'` | CSS selector of the parent DOM element where the component will be mounted.                        |
+| `preload` | `String`  | `'auto'` | Audio preload strategy. Supports native HTML audio preload values: `none`, `metadata`, and `auto`. |
 
 ### Methods
 
-| Method | Description |
-| :--- | :--- |
+| Method   | Description                                   |
+| :------- | :-------------------------------------------- |
 | `play()` | Loads the audio resource and starts playback. |
 
 ## Usage Examples
@@ -83,8 +78,8 @@ Enable continuous playback by setting `loop` to `true`.
 
 ```javascript
 const audio = BaobaoAudioPlayback({
-  src: 'https://example.com/background-music.mp3',
-  loop: true
+  src: "https://example.com/background-music.mp3",
+  loop: true,
 });
 
 audio.play();
@@ -96,8 +91,8 @@ Specify a DOM container using the `el` option.
 
 ```javascript
 const audio = BaobaoAudioPlayback({
-  src: 'https://example.com/notification.mp3',
-  el: '#app'
+  src: "https://example.com/notification.mp3",
+  el: "#app",
 });
 
 audio.play();
@@ -109,7 +104,7 @@ Set `icon` to `true` to enable the built-in playback UI.
 
 ```javascript
 const audio = BaobaoAudioPlayback({
-  src: 'https://example.com/audio.mp3',
+  src: "https://example.com/audio.mp3",
   icon: true,
 });
 

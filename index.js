@@ -1,122 +1,119 @@
-const _BaobaoAudioPlayback = (options) => {
-  options = Object.assign(
-    {
-      src: "",
-      loop: false,
-      // autoplay: false,
-      icon: true,
-      el: "body",
-      preload: "auto",
-    },
-    options
-  );
+class _BaobaoAudioPlayback {
+  constructor(options = {}) {
+    this.options = Object.assign(
+      {
+        src: "",
+        loop: false,
+        el: "body",
+        icon: true,
+        preload: "auto",
+        autoPlay: true,
+        loadingText: "Loading...",
+        failedText: "Retry",
+        volume: 1,
+      },
+      options,
+    );
 
-  this.loading = true;
-  this.el = options.el;
-  this.audioInstance = document.createElement("audio");
-  this.audioInstance.preload = options.preload;
-  this.audioInstance.src = options.src;
-  this.audioInstance.loop = options.loop;
-  this.instanceId = "commonAudio" + Date.parse(new Date());
+    this.audio = document.createElement("audio");
+    this.audio.src = this.options.src;
+    this.audio.loop = this.options.loop;
+    this.audio.preload = this.options.preload;
+    this.audio.volume = this.options.volume;
 
-  const templateString = "<a></a><p class='loadinghint'>音乐载入中</p>";
-  const templateNode = document.createElement("div");
-  templateNode.setAttribute("id", this.instanceId);
-  templateNode.setAttribute("class", "common_musicbutton_wrapper");
-  if (options.icon) {
-    templateNode.innerHTML = templateString;
+    this.id = "audio_" + Date.now() + Math.random(1000);
+    this.createUI();
+    this.setupEvent();
+    this.tryPlay();
   }
-  document.querySelector(options.el).appendChild(templateNode);
 
-  if (options.icon) {
-    templateNode.classList.add("active");
-    templateNode.classList.add("loading");
-  }
-  _BaobaoAudioPlayback.prototype.play();
+  createUI() {
+    const wrapper = document.createElement("div");
+    wrapper.setAttribute("id", this.id);
+    wrapper.setAttribute("class", "common_musicbutton_wrapper loading");
 
-  this.instanceElement = document.getElementById(this.instanceId);
-
-  this.instanceElement.addEventListener("click", () => {
-    if (this.audioInstance.paused) {
-      _BaobaoAudioPlayback.prototype.play();
-      this.instanceElement.classList.add("active");
-    } else {
-      _BaobaoAudioPlayback.prototype.pause();
-      this.instanceElement.classList.remove("active");
-    }
-  });
-};
-
-_BaobaoAudioPlayback.prototype = {
-  constructor: _BaobaoAudioPlayback,
-  play: () => {
-    const play = () => {
-      document.getElementById(this.instanceId).classList.remove("loading");
-      this.audioInstance
-        .play()
-        .then(() => {})
-        .catch((error) => {
-          console.log(error);
-        });
-    };
-
-    if (_BaobaoAudioPlayback.prototype.checkEnvironment() !== "ios") {
-      this.audioInstance.addEventListener(
-        "canplaythrough",
-        (e) => {
-          play();
-        },
-        false
-      );
-    } else {
-      play();
+    if (this.options.icon) {
+      wrapper.innerHTML = `<a></a><p class="loadinghint">${this.options.loadingText}</p>`;
     }
 
-    return this;
-  },
-  pause: () => {
-    this.audioInstance.pause();
-    return this;
-  },
-  checkEnvironment: () => {
-    const ua = navigator.userAgent;
-    console.log("us", ua);
-    const environmentDictionary = [
-      {
-        name: "wechat",
-        checker: ua.toLowerCase().match(/MicroMessenger/i),
-        getter: "",
-        status: false,
-      },
-      {
-        name: "ios",
-        method: "window.webkit.messageHandlers.token.postMessage('')",
-        checker: !!ua.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/),
-        getter: "window.webkit.messageHandlers.token",
-        status: false,
-      },
-      {
-        name: "android",
-        method: "window.android",
-        checker: ua.match(/(Android)\s+([\d]+)/),
-        getter: "window.android.getToken()",
-        status: false,
-      },
-    ];
-    let environment;
-    environmentDictionary.forEach((item, index) => {
-      if (item.checker) {
-        environment = item.name;
+    document.querySelector(this.options.el).appendChild(wrapper);
+    this.el = wrapper;
+  }
+
+  setupEvent() {
+    this.el.addEventListener("click", () => {
+      this.options.autoPlay = true;
+      if (this.audio.paused) {
+        this.play();
+      } else {
+        this.pause();
       }
     });
-    const result = environmentDictionary.filter((item) => item.checker);
-    environment = result.length > 0 ? result[0].name : "unknown";
+  }
 
-    return environment;
-  },
-};
+  tryPlay() {
+    const environment = this.getEnv();
 
-const BaobaoAudioPlayback = (options) => {
+    if (environment === "ios") {
+      this.el.classList.remove("loading");
+      if (this.options.autoPlay) {
+        this.play();
+      }
+    } else {
+      try {
+        // Non-iOS: Listen for 'canplaythrough' before playing
+        this.audio.addEventListener(
+          "canplaythrough",
+          () => {
+            this.el.classList.remove("loading");
+            if (this.options.autoPlay) {
+              this.play();
+            }
+          },
+          { once: true },
+        );
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  }
+  autoPlay() {}
+  play() {
+    this.el.classList.add("active");
+    this.audio.play().catch((e) => {
+      console.log("Playback failed:", e);
+      this.el.classList.add("error");
+      this.el.classList.remove("active");
+      this.el.innerHTML = `<a></a><p class="errorhint">${this.options.failedText}</p>`;
+    });
+  }
+
+  pause() {
+    this.audio.pause();
+    this.el.classList.remove("active");
+  }
+
+  getEnv() {
+    const ua = navigator.userAgent;
+
+    if (
+      /iPhone|iPad|iPod/.test(ua) ||
+      /\(i[^;]+;( U;)? CPU.+Mac OS X/.test(ua)
+    ) {
+      return "ios";
+    }
+    if (/Android/.test(ua)) {
+      return "android";
+    }
+    if (/MicroMessenger/i.test(ua)) {
+      return "wechat";
+    }
+    return "desktop";
+  }
+}
+
+// Factory
+var BaobaoAudioPlayback = function (options) {
   return new _BaobaoAudioPlayback(options);
 };
 
